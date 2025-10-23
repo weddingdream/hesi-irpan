@@ -32,7 +32,7 @@ export const theme = (() => {
     /**
      * @returns {void}
      */
-    const setDark = () => themes.set('active', 'light');
+    const setDark = () => themes.set('active', 'dark');
 
     /**
      * @param {string[]} listTheme
@@ -70,7 +70,7 @@ export const theme = (() => {
         const status = themes.get('active') === 'dark';
 
         if (dark && light) {
-            return status ? light : light;
+            return status ? dark : light;
         }
 
         return status;
@@ -79,7 +79,7 @@ export const theme = (() => {
     /**
      * @returns {void}
      */
-    const change = () => isDarkMode() ? onLight() : onLight();
+    const change = () => isDarkMode() ? onLight() : onDark();
 
     /**
      * @returns {boolean}
@@ -110,12 +110,12 @@ export const theme = (() => {
         metaTheme = document.querySelector('meta[name="theme-color"]');
 
         if (!themes.has('active')) {
-            window.matchMedia('(prefers-color-scheme: dark)').matches ? setLight() : setLight();
+            window.matchMedia('(prefers-color-scheme: dark)').matches ? setDark() : setLight();
         }
 
         switch (document.documentElement.getAttribute('data-bs-theme')) {
             case 'dark':
-                setLight();
+                setDark();
                 break;
             case 'light':
                 setLight();
@@ -125,7 +125,7 @@ export const theme = (() => {
         }
 
         if (isDarkMode()) {
-            onLight();
+            onDark();
         } else {
             onLight();
         }
