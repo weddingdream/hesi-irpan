@@ -440,10 +440,10 @@
 
                             <div class="d-flex justify-content-between align-items-center mt-2">
                                 <p class="m-0 p-0" style="font-size: 0.95rem;"><i class="fa-regular fa-user fa-sm me-1"></i>Irpan</p>
-                                <button class="btn btn-outline-auto btn-sm shadow-sm rounded-4 py-0" style="font-size: 0.75rem;" data-bs-toggle="collapse" data-bs-target="#collapseTf"><i class="fa-solid fa-circle-info fa-sm me-1"></i>Info</button>
+                                <button class="btn btn-outline-auto btn-sm shadow-sm rounded-4 py-0" style="font-size: 0.75rem;" data-bs-toggle="collapse" data-bs-target="#collapseTfirpan"><i class="fa-solid fa-circle-info fa-sm me-1"></i>Info</button>
                             </div>
 
-                            <div class="collapse" id="collapseTf">
+                            <div class="collapse" id="collapseTfirpan">
                                 <hr class="my-2 py-1">
                                 <p class="m-0" style="font-size: 0.9rem;"><i class="fa-solid fa-building-columns me-1"></i>BCA</p>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
@@ -454,7 +454,7 @@
                             </div>
                         </div>
 
-                        <div class="bg-theme-auto rounded-4 shadow p-3 mx-4 mt-4 text-start" data-aos="fade-up" data-aos-duration="2500">
+                        <div class="bg-theme-auto rounded-4 shadow p-3 mx-4 mt-4 text-start" data-aos="fade-up" data-aos-duration="2500" hidden>
                             <i class="fa-solid fa-qrcode fa-lg"></i>
                             <p class="d-inline">Qris</p>
 
@@ -476,16 +476,16 @@
                             <p class="d-inline">Gift</p>
 
                             <div class="d-flex justify-content-between align-items-center mt-2">
-                                <p class="m-0 p-0" style="font-size: 0.95rem;"><i class="fa-regular fa-user fa-sm me-1"></i>Hesi</p>
+                                <p class="m-0 p-0" style="font-size: 0.95rem;"><i class="fa-regular fa-user fa-sm me-1"></i>Hesi & Irpan</p>
                                 <button class="btn btn-outline-auto btn-sm shadow-sm rounded-4 py-0" style="font-size: 0.75rem;" data-bs-toggle="collapse" data-bs-target="#collapseGift"><i class="fa-solid fa-circle-info fa-sm me-1"></i>Info</button>
                             </div>
 
                             <div class="collapse" id="collapseGift">
                                 <hr class="my-2 py-1">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <p class="m-0 p-0" style="font-size: 0.85rem;"><i class="fa-solid fa-phone-volume me-1"></i>0812345678</p>
+                                    <p class="m-0 p-0" style="font-size: 0.85rem;"><i class="fa-solid fa-phone-volume me-1"></i>082240534291</p>
                                     <!-- Ubah juga data-copy sesuai dengan no hp -->
-                                    <button class="btn btn-outline-auto btn-sm shadow-sm rounded-4 py-0" style="font-size: 0.75rem;" data-copy="0812345678" onclick="undangan.util.copy(this)"><i class="fa-solid fa-copy"></i></button>
+                                    <button class="btn btn-outline-auto btn-sm shadow-sm rounded-4 py-0" style="font-size: 0.75rem;" data-copy="082240534291" onclick="undangan.util.copy(this)"><i class="fa-solid fa-copy"></i></button>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <p class="my-0 p-0 text-truncate me-2" style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot me-1"></i>Dusun Cijambe RT.04/RW.02 Desa Cijambe Kec. Paseh, Kab Sumedang</p>
@@ -640,9 +640,39 @@
         <button type="button" id="button-theme" class="btn bg-light-dark border btn-sm rounded-circle d-none btn-transparent shadow-sm mt-3" aria-label="Change theme" onclick="undangan.theme.change()">
             <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
+        <button id="playBtn">
+            <i class="fa-solid fa-circle-play spin-button"></i>
+        </button>
+
+        <audio id="bg-music" loop>
+            <source src="assets/music/pure-love-304010.mp3" type="audio/mpeg" />
+        </audio>
+
+        <script>
+        const btn = document.getElementById("playBtn");
+        const music = document.getElementById("bg-music");
+
+        let isPlaying = false; // status musik
+
+        btn.addEventListener("click", async function () {
+            try {
+            if (!isPlaying) {
+                await music.play(); // mulai musik
+                btn.innerHTML = '<i class="fa-solid fa-circle-pause spin-button"></i>';
+                isPlaying = true;
+            } else {
+                music.pause(); // hentikan musik
+                btn.innerHTML = '<i class="fa-solid fa-circle-play spin-button"></i>';
+                isPlaying = false;
+            }
+            } catch (err) {
+            console.error("Gagal memutar musik:", err);
+            }
+        });
+        </script>
 
         <!-- Audio Button -->
-        <button type="button" id="button-music" class="btn bg-light-dark border btn-sm rounded-circle d-none btn-transparent shadow-sm mt-3" aria-label="Change audio" data-offline-disabled="false">
+        <!-- <button type="button" id="button-music" class="btn bg-light-dark border btn-sm rounded-circle d-none btn-transparent shadow-sm mt-3" aria-label="Change audio" data-offline-disabled="false">
             <i class="fa-solid fa-circle-pause spin-button"></i>
         </button>
         <script>
@@ -694,7 +724,7 @@
             };
 
             load(); // panggil fungsi load langsung
-        })();
+        })(); -->
     </script>
     </div>
 
