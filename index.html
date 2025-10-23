@@ -637,36 +637,26 @@
     <!-- Button Group -->
     <div class="d-flex position-fixed flex-column" style="bottom: 10vh; right: 2vh; z-index: 1030;">
         <!-- Theme Button -->
-        <button type="button" id="button-theme" class="btn bg-light-dark border btn-sm rounded-circle d-none btn-transparent shadow-sm mt-3" aria-label="Change theme" onclick="undangan.theme.change()">
+        <button type="button" id="button-theme" class="btn bg-light-dark border btn-sm rounded-circle d-none btn-transparent shadow-sm mt-3" aria-label="Change theme" onclick="undangan.theme.change()" hidden>
             <i class="fa-solid fa-circle-half-stroke"></i>
-        </button>
-        <button id="playBtn">
-            <i class="fa-solid fa-circle-play spin-button"></i>
         </button>
 
         <audio id="bg-music" loop>
             <source src="assets/music/pure-love-304010.mp3" type="audio/mpeg" />
         </audio>
 
-        <script>
-        const btn = document.getElementById("playBtn");
+       <script>
         const music = document.getElementById("bg-music");
+        let hasPlayed = false; // pastikan musik hanya play sekali
 
-        let isPlaying = false; // status musik
-
-        btn.addEventListener("click", async function () {
-            try {
-            if (!isPlaying) {
-                await music.play(); // mulai musik
-                btn.innerHTML = '<i class="fa-solid fa-circle-pause spin-button"></i>';
-                isPlaying = true;
-            } else {
-                music.pause(); // hentikan musik
-                btn.innerHTML = '<i class="fa-solid fa-circle-play spin-button"></i>';
-                isPlaying = false;
-            }
-            } catch (err) {
-            console.error("Gagal memutar musik:", err);
+        window.addEventListener("scroll", async () => {
+            if (!hasPlayed) {
+                try {
+                    await music.play(); // mulai musik saat scroll pertama
+                    hasPlayed = true;   // mencegah musik diputar lagi
+                } catch (err) {
+                    console.warn("Autoplay diblokir, musik akan dimulai setelah interaksi user.", err);
+                }
             }
         });
         </script>
