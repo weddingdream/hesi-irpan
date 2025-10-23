@@ -9,7 +9,8 @@ export const theme = (() => {
         '#f8f9fa': '#212529'
     };
     const themeLight = ['#ffffff', '#f8f9fa'];
-    const themeDark = ['#000000', '#212529'];
+    const themeDark = ['#ffffff', '#f8f9fa'];
+    // const themeDark = ['#000000', '#212529'];
 
     let isAuto = false;
 
