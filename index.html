@@ -659,6 +659,29 @@
                 }
             }
         });
+
+        // thema selalu light
+        document.addEventListener("DOMContentLoaded", function () {
+        // pastikan tema selalu light
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+
+        // jika ada fungsi global undangan.theme.change, pastikan tidak mengganti tema lagi
+        if (window.undangan && undangan.theme) {
+            undangan.theme.current = "light";
+            undangan.theme.change = function() {
+                // override agar tidak bisa ganti tema
+                console.log("Tema dikunci ke light mode");
+            };
+        }
+
+        // ubah tombol agar sesuai
+        const btn = document.getElementById("button-theme");
+        if (btn) {
+            btn.classList.add("bg-light");
+            btn.classList.remove("bg-dark");
+        }
+    });
         </script>
 
         <!-- Audio Button -->
