@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
+    "fs-extra": "^11.3.1",
+    "gh-pages": "^6.3.0",
+    "globals": "^16.3.0",
+    "htmlhint": "^1.6.3",
+    "madge": "^8.0.0",
+    "stylelint": "^16.23.1",
+    "stylelint-config-recommended": "^17.0.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.9"
+  },
+  "scripts": {
+    "lint:js": "eslint js",
+    "lint:css": "stylelint css",
+    "lint:html": "htmlhint **/*.html",
+    "dev": "npx esbuild js/*.js --bundle --outdir=dist --servedir=. --serve=8080",
+    "build": "npx esbuild js/*.js --bundle --minify --outdir=dist",
+    "build:public": "npm run build && node -e \"const fs = require('fs-extra'); fs.ensureDir('public').then(() => Promise.all(['assets', 'css', 'dist', 'index.html', 'dashboard.html'].map((f) => fs.copy(f, 'public/' + f)))).then(() => console.log('✅ Successfully!'));\"",
+
+    "predeploy": "npm run build:public",
+    "deploy": "gh-pages -d public"
+  },
+  "homepage": "https://tyoadityap.github.io/hesi-irpan/"
+}
