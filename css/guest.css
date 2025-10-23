@@ -21,10 +21,19 @@ html {
 
 .img-center-crop {
     width: 13rem;
-    height: 17rem;
+    height: 13rem;
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+}
+
+.img-center-crop-foto {
+    width: 13rem;
+    height: 13rem;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center 0%; /* geser ke bawah 30% */
 }
 
 html[data-bs-theme="dark"] .btn-transparent {
